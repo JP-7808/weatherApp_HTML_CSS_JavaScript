@@ -52,6 +52,15 @@ body {
   .search button:hover {
     background: #00aaff;
   }
+
+  .card{
+    border: #00aaff solid ;
+    border-radius: 20px;
+    background-color: #c7f7f9;
+    margin-bottom: 10px;
+    color: rgb(174, 154, 0);
+    box-shadow: 5px 5px 5px 5px rgb(81, 80, 80);
+  }
   
   #weatherDetails {
     margin-top: 20px;

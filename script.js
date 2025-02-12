@@ -56,8 +56,6 @@ function updateWeatherDetails(city, weather) {
   document.getElementById('humidity').textContent = `Humidity: ${weather.humidity}%`;
   document.getElementById('windSpeed').textContent = `Wind Speed: ${weather.wspd} km/h`;
 
-  // Debug the icon condition value
-  console.log('Weather condition for icon:', weather.conditions);
 
   // Assign the local image based on the weather condition
   const weatherIcon = getWeatherIcon(weather.conditions.toLowerCase());
