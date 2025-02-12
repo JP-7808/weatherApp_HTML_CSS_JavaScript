@@ -2,64 +2,73 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f0f8ff;
-  }
-  
-  .app {
-    text-align: center;
-    padding: 20px;
-  }
-  
-  header h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(to bottom, #4facfe, #00f2fe);
     color: #333;
-    margin: 10px 0;
   }
   
-  .search-container {
-    margin: 20px 0;
+  .container {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
   
-  #cityInput {
-    padding: 10px;
-    width: 250px;
+  h1 {
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+  }
+  
+  .search {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .search input {
+    padding: 8px;
+    font-size: 1rem;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 4px;
+    flex: 1;
   }
   
-  #searchBtn {
-    padding: 10px 20px;
-    border: none;
-    background-color: #007bff;
+  .search button {
+    padding: 8px 12px;
+    font-size: 1rem;
+    background: #4facfe;
     color: white;
-    border-radius: 5px;
+    border: none;
+    border-radius: 4px;
     cursor: pointer;
   }
   
-  #searchBtn:hover {
-    background-color: #0056b3;
+  .search button:hover {
+    background: #00aaff;
   }
   
-  .weather-details {
+  #weatherDetails {
     margin-top: 20px;
-    padding: 20px;
-    background-color: #ffffff;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    display: inline-block;
-    text-align: left;
   }
   
-  .weather-details img {
-    width: 50px;
-    height: 50px;
+  #weatherDetails img {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 10px;
   }
   
   .hidden {
     display: none;
   }
   
-  .error-message {
+  #errorMessage {
     color: red;
-    font-weight: bold;
+    font-size: 1rem;
   }
   

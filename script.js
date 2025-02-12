@@ -1,12 +1,23 @@
 const API_KEY = '576b4efd0emsh08fdce5bfd390fbp1a4975jsn7c321e2d6130';
 const API_HOST = 'visual-crossing-weather.p.rapidapi.com';
 
-document.getElementById('searchBtn').addEventListener('click', fetchWeather);
+// Default city to load
+const DEFAULT_CITY = 'Biharsharif';
 
-async function fetchWeather() {
+document.addEventListener('DOMContentLoaded', () => {
+  fetchWeather(DEFAULT_CITY);
+});
+
+document.getElementById('searchBtn').addEventListener('click', () => {
   const city = document.getElementById('cityInput').value;
-  if (!city) return alert('Please enter a city name');
+  if (!city) {
+    alert('Please enter a city name');
+  } else {
+    fetchWeather(city);
+  }
+});
 
+async function fetchWeather(city) {
   const url = `https://${API_HOST}/forecast`;
   const params = new URLSearchParams({
     aggregateHours: '24',
@@ -30,8 +41,10 @@ async function fetchWeather() {
     const data = await response.json();
     const weather = Object.values(data.locations)[0].values[0];
 
+    console.log('Weather data:', weather); // Debug the weather data returned
     updateWeatherDetails(city, weather);
   } catch (error) {
+    console.error('Error fetching weather:', error);
     showError();
   }
 }
@@ -43,8 +56,12 @@ function updateWeatherDetails(city, weather) {
   document.getElementById('humidity').textContent = `Humidity: ${weather.humidity}%`;
   document.getElementById('windSpeed').textContent = `Wind Speed: ${weather.wspd} km/h`;
 
+  // Debug the icon condition value
+  console.log('Weather condition for icon:', weather.conditions);
+
   // Assign the local image based on the weather condition
-  document.getElementById('weatherIcon').src = `./icons/${getWeatherIcon(weather.icon)}`;
+  const weatherIcon = getWeatherIcon(weather.conditions.toLowerCase());
+  document.getElementById('weatherIcon').src = `./icons/${weatherIcon}`;
   document.getElementById('weatherIcon').alt = weather.conditions;
 
   const weatherDetails = document.getElementById('weatherDetails');
@@ -78,15 +95,20 @@ function showError() {
 function getWeatherIcon(condition) {
   // Map the weather condition to the appropriate icon file
   const icons = {
-    "Clear": "sun.png",
-    "cloudy": "cloud.png",
-    "fog": "fog.png",
-    "rain": "rain.png",
-    "snow": "snow.png",
-    "thunder": "storm.png",
-    "wind": "windy.png",
+    sunny: "sun.png",
+    cloudy: "cloud.png",
+    overcast: "cloud.png",
+    fog: "fog.png",
+    mist: "fog.png",
+    rain: "rain.png",
+    drizzle: "rain.png",
+    sleet: "snow.png",
+    snow: "snow.png",
+    thunderstorm: "storm.png",
+    windy: "windy.png",
+    clear: "sun.png",
   };
 
-  // Default icon if condition is not recognized
+  // Match the condition to an icon or default to cloudy
   return icons[condition] || "cloud.png";
 }
